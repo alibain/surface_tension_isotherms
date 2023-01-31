@@ -64,7 +64,8 @@ def fit_isotherm(st_data,con_data,min_pt, max_pt,n,σ_sol,T,isotherm):
         G_maxx_error=standard_error[0]/(n*R*T)
         a=popt[1]
         a_error=standard_error[1]
-        x_fit=np.linspace(0,max(con_data),100)
+        #x_fit=np.linspace(0,max(con_data),100)
+        x_fit=np.linspace(np.log10(min(con_data)),np.log10(max(con_data)),500) # updated to have better spacing of points over orders of magnitude
         y_fit=langmuir(x_fit,popt[0],popt[1])
         pl=np.polyfit(con2, st2, 1,cov=True) #fit high concentration data with straight line
         em2=np.sqrt(pl[1][0][0])
